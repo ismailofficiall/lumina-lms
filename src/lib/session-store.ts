@@ -10,7 +10,8 @@
  * ─────────────────────────────────────────────────────────────
  */
 
-const MAX_DEVICES = 2;
+const MAX_DEVICES = 5; // generous limit — in-memory store resets on serverless cold starts
+const SESSION_TTL_MS = 4 * 60 * 60 * 1000; // 4 hours
 
 interface DeviceSession {
     sessionToken: string;   // unique JWT jti (or user id + timestamp)
@@ -30,7 +31,7 @@ export function tryRegisterSession(userId: string, sessionToken: string, userAge
     // Clean up expired or timed-out sessions (older than 9 h — slightly more than JWT maxAge)
     const now = Date.now();
     const existing = (activeSessions.get(userId) ?? []).filter(
-        s => now - s.createdAt < 9 * 60 * 60 * 1000
+        s => now - s.createdAt < SESSION_TTL_MS
     );
 
     // Already has this token registered (same device re-authenticating) — refresh it
@@ -62,6 +63,6 @@ export function removeSession(userId: string, sessionToken: string) {
 export function getActiveDeviceCount(userId: string): number {
     const now = Date.now();
     return (activeSessions.get(userId) ?? []).filter(
-        s => now - s.createdAt < 9 * 60 * 60 * 1000
+        s => now - s.createdAt < SESSION_TTL_MS
     ).length;
 }
