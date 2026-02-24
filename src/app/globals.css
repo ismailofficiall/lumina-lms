@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+}
+
+/* ===========================
+   Base Styles & Scrollbar
+   =========================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #09090b;
+  color: #f4f4f5;
+  font-family: var(--font-inter);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4a843;
+}
+
+/* ===========================
+   Typography
+   =========================== */
+.font-serif {
+  font-family: var(--font-playfair) !important;
+}
+
+.font-sans {
+  font-family: var(--font-inter) !important;
+}
+
+/* ===========================
+   Glassmorphism
+   =========================== */
+.glass {
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(63, 63, 70, 0.6);
+}
+
+.glass-light {
+  background: rgba(39, 39, 42, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(63, 63, 70, 0.4);
+}
+
+/* ===========================
+   Gold Gradient Text
+   =========================== */
+.gold-text {
+  background: linear-gradient(135deg, #d4a843 0%, #e8d5a3 50%, #c9973a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-border {
+  border-color: rgba(212, 168, 67, 0.4);
+}
+
+/* ===========================
+   Progress Bar
+   =========================== */
+.progress-bar {
+  height: 4px;
+  background: #27272a;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #d4a843, #e8d5a3);
+  transition: width 1s ease-in-out;
+}
+
+/* ===========================
+   Card hover effects
+   =========================== */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 168, 67, 0.08);
+}
+
+/* ===========================
+   Sidebar
+   =========================== */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #a1a1aa;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  background: rgba(39, 39, 42, 0.8);
+  color: #f4f4f5;
+}
+
+.sidebar-link.active {
+  background: rgba(212, 168, 67, 0.12);
+  color: #d4a843;
+  border: 1px solid rgba(212, 168, 67, 0.2);
+}
+
+.sidebar-link.active svg {
+  color: #d4a843;
+}
+
+/* ===========================
+   Notification badge
+   =========================== */
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #d4a843, #e8d5a3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #18181b;
+  border: 2px solid #09090b;
+}
+
+/* ===========================
+   Animations
+   =========================== */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-gold {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 168, 67, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(212, 168, 67, 0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.4s ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+/* ===========================
+   Subject color tags
+   =========================== */
+.tag-economics {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.tag-accounting {
+  background: rgba(16, 185, 129, 0.12);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.tag-bst {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.tag-ict {
+  background: rgba(236, 72, 153, 0.12);
+  color: #f9a8d4;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+}
+
+/* Deadline subject colors */
+.deadline-economics {
+  border-left: 3px solid #818cf8;
+}
+
+.deadline-accounting {
+  border-left: 3px solid #34d399;
+}
+
+.deadline-bst {
+  border-left: 3px solid #fbbf24;
+}
+
+.deadline-ict {
+  border-left: 3px solid #f472b6;
+}
+
+/* ===========================
+   Search bar
+   =========================== */
+.search-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(63, 63, 70, 0.6);
+  color: #71717a;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid rgba(63, 63, 70, 0.8);
+}
+
+/* ===========================
+   Mobile / responsive helpers
+   =========================== */
+
+/* iOS safe-area for bottom tab bar */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Prevent horizontal scroll leaks on mobile */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Mobile tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
